@@ -69,7 +69,7 @@ class AsyncComposioToolSet(BaseComposioToolSet, runtime="letta", description_cha
         }
 
         try:
-            async with aiohttp.ClientSession() as session:
+            async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=30)) as session:
                 async with session.post(endpoint, headers=self.headers, json=json_payload) as response:
                     print(response, response.status, response.reason, response.content)
                     if response.status == 200:
