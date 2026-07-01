@@ -776,6 +776,9 @@ def get_user_message_from_chat_completions_request(completion_request: Completio
         # Catch any other unexpected errors and include the exception message
         raise HTTPException(status_code=400, detail=f"An error occurred while processing 'messages': {str(e)}")
 
+    if not messages:
+        raise HTTPException(status_code=400, detail="The 'messages' field must not be empty.")
+
     if messages[-1]["role"] != "user":
         logger.error(f"The last message does not have a `user` role: {messages}")
         raise HTTPException(status_code=400, detail="'messages[-1].role' must be a 'user'")
