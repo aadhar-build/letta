@@ -12,7 +12,7 @@ Requires [Node.js 18+](https://nodejs.org/en/download)
 1. Install the [Letta Code](https://github.com/letta-ai/letta-code) CLI tool: `npm install -g @letta-ai/letta-code`
 2. Run `letta` in your terminal to launch an agent with memory running on your local computer
 
-When running the CLI tool, your agent help you code and do any task you can do on your computer.
+When running the CLI tool, your agent helps you code and do any task you can do on your computer.
 
 Letta Code supports [skills](https://docs.letta.com/letta-code/skills) and [subagents](https://docs.letta.com/letta-code/subagents), and bundles pre-built skills/subagents for advanced memory and continual learning. Letta is fully model-agnostic, though we recommend Opus 4.5 and GPT-5.2 for best performance (see our [model leaderboard](https://leaderboard.letta.com/) for our rankings).
 
