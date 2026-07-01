@@ -90,7 +90,6 @@ postgres = [
     "pgvector>=0.2.3",
     "pg8000>=1.30.3",
     "psycopg2-binary>=2.9.10",
-    "psycopg2>=2.9.10",
     "asyncpg>=0.30.0",
 ]
 redis = ["redis>=6.2.0"]
