@@ -58,7 +58,9 @@ class LMStudioOpenAIProvider(OpenAIProvider):
                 LLMConfig(
                     model=model_name,
                     model_endpoint_type="openai",
-                    model_endpoint=self.model_endpoint_url,
+                    # NOTE: model_endpoint_url points at /api/v0 (LMStudio's model-list endpoint),
+                    # but chat/completions requests need the OpenAI-compatible /v1 base_url instead
+                    model_endpoint=self.base_url,
                     context_window=context_window_size,
                     handle=self.get_handle(model_name),
                     max_tokens=self.get_default_max_output_tokens(model_name),
