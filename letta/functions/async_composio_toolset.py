@@ -1,5 +1,5 @@
 import json
-from typing import Any
+from typing import Any, Optional
 
 import aiohttp
 from composio import ComposioToolSet as BaseComposioToolSet
@@ -39,7 +39,7 @@ class AsyncComposioToolSet(BaseComposioToolSet, runtime="letta", description_cha
     async def execute_action(
         self,
         action: str,
-        params: dict[str, Any] = {},
+        params: Optional[dict[str, Any]] = None,
     ) -> dict[str, Any]:
         """
         Execute an action asynchronously using the Composio API
@@ -68,10 +68,10 @@ class AsyncComposioToolSet(BaseComposioToolSet, runtime="letta", description_cha
             "arguments": params or {},
         }
 
+        timeout = aiohttp.ClientTimeout(total=60)
         try:
-            async with aiohttp.ClientSession() as session:
+            async with aiohttp.ClientSession(timeout=timeout) as session:
                 async with session.post(endpoint, headers=self.headers, json=json_payload) as response:
-                    print(response, response.status, response.reason, response.content)
                     if response.status == 200:
                         return await response.json()
                     else:
